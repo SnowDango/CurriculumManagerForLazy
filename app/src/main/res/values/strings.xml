@@ -2,4 +2,5 @@
     <string name="app_name">時間割</string>
     <string name="formal_app_name">怠惰な学生のための時間割</string>
     <string name="settings">settings</string>
+    <string name="curriculum_null_message">時間割りを追加してください。</string>
 </resources>

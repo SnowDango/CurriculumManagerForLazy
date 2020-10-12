@@ -1,4 +1,4 @@
-package com.snowdango.curriculummanagerforlazy
+package com.snowdango.curriculummanagerforlazy.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,8 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.snowdango.curriculummanagerforlazy.R
+import com.snowdango.curriculummanagerforlazy.store.CurriculumStore
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    private val mCurriculumStore = CurriculumStore()
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.settings,menu)
@@ -22,6 +26,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val toolbar = findViewById<Toolbar>(R.id.main_tool)
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener(this)
+
+        setFrag()
+    }
+
+    private fun setFrag(){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        if(mCurriculumStore.curriculumData == null){
+            val nullCurriculumFragment = NullCurriculumFragment()
+            fragmentTransaction.replace(R.id.main_frame,nullCurriculumFragment)
+        }else{
+            val curriculumFragment = CurriculumFragment()
+            fragmentTransaction.replace(R.id.main_frame,curriculumFragment)
+        }
+        fragmentTransaction.commit()
     }
 
     override fun onClick(p0: View?) {
