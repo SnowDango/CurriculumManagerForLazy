@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.RecyclerView
 import com.snowdango.curriculummanagerforlazy.R
 import com.snowdango.curriculummanagerforlazy.store.CurriculumStore
+import com.xwray.groupie.GroupAdapter
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -27,20 +30,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener(this)
 
-        setFrag()
-    }
-
-    private fun setFrag(){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
         if(mCurriculumStore.curriculumData == null){
-            val nullCurriculumFragment = NullCurriculumFragment()
-            fragmentTransaction.replace(R.id.main_frame,nullCurriculumFragment)
+            val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+            recyclerView.visibility = View.GONE
         }else{
-            val curriculumFragment = CurriculumFragment()
-            fragmentTransaction.replace(R.id.main_frame,curriculumFragment)
+            val linearLayout: LinearLayout = findViewById(R.id.null_linear)
+            linearLayout.visibility = View.GONE
         }
-        fragmentTransaction.commit()
+
     }
 
     override fun onClick(p0: View?) {
