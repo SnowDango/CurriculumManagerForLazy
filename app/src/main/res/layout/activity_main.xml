@@ -16,11 +16,35 @@
         app:navigationIcon="@drawable/ic_baseline_menu_24"
         tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/main_frame"
+    <com.airbnb.epoxy.EpoxyRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/main_tool"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/null_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/main_tool"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/curriculum_null_message"
+            android:layout_gravity="center_horizontal"/>
+        <ImageButton
+            android:id="@+id/first_curriculum_add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_baseline_add_circle_48"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
